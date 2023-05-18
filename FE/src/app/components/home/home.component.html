@@ -1,0 +1,31 @@
+<!--Immagine pokedex-->
+<div class="flex flex-col justify-center items-center mt-1">
+  <img src="../assets/Pokédex3D.png" class="w-1/4">
+  </div>
+
+  <!--Testo a piacimento-->
+  <h1 class="mx-20 text-4xl text-red-700 font-bold flex flex-col justify-center items-center mt-1">
+    Questo pokedex contiene pokemon di vario genere, per avviare la ricerca, basta cliccare sul tasto sottostante che ti porterà
+    in una pagina dove potrai cercare ogni pokemon che vorrai. 
+  </h1>
+
+  <!--Bottone-->
+  <div class="text-center">
+    <button routerLink="/search" class="bg-red-500 border border-black rounded-md text-white py-2 px-4 mt-10">
+        Vai alla ricerca dei pokemon
+    </button>
+</div>
+
+<!--Metto le 3 immagini-->
+<div class="flex justify-center mt-8" *ngIf="pokemonData.length > 0">
+  <div *ngFor="let pokemon of pokemonData" class="mx-4">
+    <a [routerLink]="['/search']" [queryParams]="{ name: pokemon.name }">
+    <div class="border-2 border-black rounded-md shadow-lg p-4 bg-white">
+      <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="w-32 h-32 mx-auto mb-2">
+      <div class="text-center">{{ pokemon.name }}</div>
+    </div>
+  </a>
+  </div>
+</div>
+
+

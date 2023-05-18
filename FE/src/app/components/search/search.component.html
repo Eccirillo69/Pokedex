@@ -1,0 +1,78 @@
+<!--componenre di ricerca-->
+<!--Ho importato questo componente da tailwind component-->
+<div class="flex justify-center items-center mt-8">
+    <div class="relative mx-auto text-white flex">
+      <input [(ngModel)]="pokemonName" class="border-2 border-black bg-red-500 h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+        type="text" name="search" placeholder="Nome">
+      <button (click)="searchPokemon(pokemonName)" type="submit"
+        class="p-2 ml-2 bg-red-500 rounded-lg border-2 border-black dark:bg-red-600">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <div *ngIf="searchError" class="text-red-600 mt-2 text-center">
+    Controlla come hai scritto il pokemon, imbecille.
+  </div>
+  
+
+
+  <div class="min-h-screen/2 flex items-start">
+    <!-- Metà sinistra -->
+    <div class="w-1/2 flex justify-center h-full">
+      <div class="items-center justify-center w-80 h-80 rounded-xl border-2 border-black sm:flex bg-red-300 mt-8">
+        <div class="sm:w-8/12 p-5 text-center">
+            <div class="flex items-center space-x-4 justify-between">
+            </div>
+          <img [src]="pokemonImageUrl || 'assets/pokeball.png'" alt="Immagine" 
+               [ngClass]="{'animate-spin': !pokemonFound && pokemonImageUrl === 'assets/pokeball.png', 'object-cover': pokemonFound, 'w-full h-full': true }">
+        </div>
+      </div>
+    </div>
+  
+    <!-- Metà destra -->
+    <div class="w-1/2 flex justify-center items-center h-full">
+      <div class="items-center justify-center w-80 h-80 rounded-xl border-2 border-black bg-red-300 mt-8">
+        <div class="max-w-4xl p-6">
+          <div class="p-4 border-b">
+            <h2 class="text-2xl font-bold capitalize">{{ pokemonName }}</h2>
+          </div>
+          <ul class="list-disc list-inside">
+            <li>
+              <span class="text-gray-600 font-medium pr-4">Speed</span>
+              <span class="font-bold">{{ pokemonStats.speed }}</span>
+            </li>
+            <li>
+              <span class="text-gray-600 font-medium pr-4">Speed defense</span>
+              <span class="font-bold">{{ pokemonStats.special_defense }}</span>
+            </li>
+            <li>
+              <span class="text-gray-600 font-medium pr-4">Special Attack</span>
+              <span class="font-bold">{{ pokemonStats.special_attack }}</span>
+            </li>
+            <li>
+              <span class="text-gray-600 font-medium pr-4">Attack</span>
+              <span class="font-bold">{{ pokemonStats.attack }}</span>
+            </li>
+            <li>
+              <span class="text-gray-600 font-medium pr-4">Hp</span>
+              <span class="font-bold">{{ pokemonStats.hp }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+</div>
+ 
+<!--Bottone torna home-->
+<div class="text-center mt-8">
+  <button routerLink="/home" class="bg-red-500 border-2 border-black rounded-md text-white py-2 px-4">
+    Torna alla Home
+  </button>
+</div>
+
+ 
